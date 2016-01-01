@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
-  host: localhost
+  username: myapp
+  password: myapp_pass
+  host: mysql
 
 development:
   <<: *default
