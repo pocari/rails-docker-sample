@@ -3,5 +3,6 @@
 SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 source $SCRIPT_DIR/common.sh
 
-docker-compose $*
+YML_FILE=$SCRIPT_DIR/docker-compose.yml
+docker-compose -f $YML_FILE $*
 
