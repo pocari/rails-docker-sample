@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
         libyaml-dev \
         zlib1g-dev \
         libmysqld-dev \
-        nodejs
+        vim-tiny
 
 ############################################################
 # ruby install
@@ -52,10 +52,13 @@ ADD resources/scripts /var/scripts
 #####################################################
 # misc settings
 RUN usermod -u 1000 www-data
+RUN usermod -s /bin/bash www-data
+RUN \cp -fp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 ############################################################
 # clean apt-get files
 RUN apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
 VOLUME /var/data
 EXPOSE 8080
 
