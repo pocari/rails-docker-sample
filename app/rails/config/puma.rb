@@ -18,7 +18,7 @@ port        ENV.fetch("PORT") { 3000 }
 #
 # The default is “false”.
 #
-daemonize true
+#daemonize true
 
 # Specifies the `environment` that Puma will run in.
 #

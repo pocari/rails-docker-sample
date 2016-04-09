@@ -3,5 +3,7 @@
 cd /var/data
 
 #bundle exec rake unicorn:start
-bundle exec puma -b unix:///tmp/puma.sock
+bundle exec puma \
+  --bind unix:///tmp/puma.sock \
+  --daemon
 

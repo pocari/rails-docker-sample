@@ -7,6 +7,7 @@ mysql:
     MYSQL_USER : myapp
     MYSQL_PASSWORD : myapp_pass
     MYSQL_ROOT_PASSWORD : _root_
+
 webapp:
   build: $WEBAPP_DOCKERFILE_DIR
   ports:
@@ -15,5 +16,7 @@ webapp:
     - mysql:mysql
   volumes:
     - ${APP_ROOT_DIR}:/var/data
+  environment:
+    RAILS_DATABASE_HOST : mysql
   command: /var/scripts/start_webapp.sh
 
