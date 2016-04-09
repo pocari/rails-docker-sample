@@ -38,8 +38,6 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
         nginx
 
-COPY ./resources/nginx/default.conf /etc/nginx/conf.d/
-
 ############################################################
 # monit install
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install monit
@@ -47,13 +45,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install monit
 #####################################################
 # add scripts
 ADD resources/monit.d /etc/monit/conf.d
-ADD resources/nginx/default.conf /etc/nginx/conf.d/
+ADD resources/nginx/nginx.conf /etc/nginx/nginx.conf
+ADD resources/nginx/default.conf /etc/nginx/sites-available/default
 ADD resources/scripts /var/scripts
+
+#####################################################
+# misc settings
+RUN usermod -u 1000 www-data
 
 ############################################################
 # clean apt-get files
 RUN apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
 VOLUME /var/data
 EXPOSE 8080
 
